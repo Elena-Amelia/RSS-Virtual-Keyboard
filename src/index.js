@@ -43,7 +43,17 @@ const keysShiftCaseDown = ['&#126;', '&#33;', '&#64;', '&#35;', '&#36;', '&#37;'
   'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '&#58;', '&#34;', 'Enter',
   'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '&#60;', '&#62;', '&#63;', '&#8593;', 'Shift',
   'Ctrl', 'Win', 'Alt', '', 'Alt', '&#8592;', '&#8595;', '&#8594;', 'Ctrl'];
-
+const virtKeys = {
+   Backquote: ['`', '~'], Digit1: ['1', '!'], Digit2: ['2', '@'], Digit3: ['3', '#'], Digit4: ['4','$'], Digit5: ['5', '%'],Digit6: ['6', '^'], 
+   Digit7: ['7', '&'], Digit8: ['8', '*'], Digit9: ['9', '('], Digit0: ['0', ')'], Minus: ['-', '_'], Equal: ['=', '+'], Backspace: ['Backspace', ''],
+   Tab: ['Tab', ''], KeyQ: ['q', 'Q'], KeyW: ['w', 'W'], KeyE: ['e', 'E'], KeyR: ['r', 'R'], KeyT: ['t', 'T'] , KeyY: ['y', 'Y'],
+   KeyU: ['u', 'U'], KeyI: ['i', 'I'], KeyO: ['o', 'O'], KeyP: ['p', 'P'], BracketLeft: ['[', '{'], BracketRight: [']', '}'], Backslash: ['\\', '|'] , Delete: ['Delete', ''],
+   CapsLock: ['CapsLock', ''], KeyA: ['a', 'A'], KeyS: ['s', 'S'], KeyD: ['d', 'D',] /*KeyF: ['f', 'F']*/, KeyG: ['g', 'G'], KeyH: ['h', 'H'], KeyJ: ['j', 'J'],
+   KeyK: ['k', 'K'], KeyL: ['l', 'L'], Semicolon: [';', ':'] , Quote: ["'", '"'], Enter: ['\n', ''],
+  ShiftLeft: [' ShiftLeft', ''], KeyZ: ['z', 'Z'], KeyX: ['x', 'X'], KeyC: ['c', 'C'], KeyV: ['v', 'V'],
+  KeyB: ['b', 'B'], KeyN: ['n', 'N'], KeyM: ['m', 'M'], Comma: [',', '<'], Period: ['.', '>'], Slash: ['/', '?'], ArrowUp: ['ArrowUp', ''], ShiftRight: ['ShiftRight', ''],
+  ControlLeft: ['', ''], MetaLeft: ['', ''], AltLeft: ['', ''], Space: [' ', ' '], AltRight: ['', ''] , ArrowLeft: ['ArrowLeft', ''], ArrowDown: ['ArrowDown', ''], ArrowRight: ['ArrowRight', ''], ControlRight: ['ControlRight', ''],
+}
 function createKeyboard() {
   let out = '';
   for (let i = 0; i < keysCode.length; i++) {
@@ -72,7 +82,7 @@ document.onkeydown = function (event) {
 
       if (event.key === 'Tab') { /** **********TAB*********** */
         event.preventDefault();
-        textarea.value += '\t';
+        TEXTAREA.value += '\t';
       }
 
       if (event.key === 'CapsLock') { /** **********CAPSLOCK*********** */
@@ -145,21 +155,19 @@ document.onkeyup = function (event) { /** *************ПРИ ОТПУСКАНИ
 
 KEY.forEach((item) => {
   item.addEventListener('mousedown', (event) => {
+    item.classList.remove('active');
     item.classList.add('active');
-    TEXTAREA.value += 'kkk';
+    let data = item.getAttribute('data');
+    let text = virtKeys[data][0];
+    TEXTAREA.value += text;
     TEXTAREA.focus();
   });
+  
 });
-KEY.forEach((item) => {
+ KEY.forEach((item) => {
   item.addEventListener('mouseup', (event) => {
     item.classList.remove('active');
     TEXTAREA.focus();
   });
 });
 
-/* keysCode.map(btn => {
-	btn.addEventListener("click", () => {
-		y.value += btn.innerHTML;
-		// res.focus();
-	});
-}); */
