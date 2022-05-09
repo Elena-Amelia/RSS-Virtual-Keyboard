@@ -1,0 +1,105 @@
+
+* {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    margin: 0;
+    color: black;
+    background-color:white;
+  }
+
+  .main--div {
+      margin: 0 auto;
+  }
+  .title, .description, .language {
+      text-align: center;
+  } 
+  .title {
+      font-size: 30px;
+      color: grey;
+  }
+  .textarea {
+      display: block;
+      width: 700px;
+      height: 200px;
+      margin: 10px auto 10px;
+      padding: 10px;
+      font-size: 18px;
+      color: black;
+  }
+  textarea {
+      overflow: auto;
+  }
+  .keyboard {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 8px;
+      column-gap: 5px;
+      width: 704px;
+      margin: 0 auto;
+      padding: 6px;
+      background-color: #888888;
+      border: 3px solid #222222;
+      border-radius: 5px;
+      user-select: none;
+  }
+  .row {
+      width: 100%;
+      height: 40px;
+      margin-bottom: 8px;
+  }
+  .key {
+      width: 40px;
+      height: 40px;
+      font-weight: 500;
+      line-height: 40px;
+      text-align: center;
+      color: white;
+      background-color: #444444;
+      border-radius: 3px;
+      cursor: pointer;
+      user-select: none;
+      transition: 0.3s;
+  }
+
+  .key:hover {
+    background-color: rgba( 255, 165, 0, 0.5);
+    }
+   
+
+  .hidden {
+      display: none;
+  }
+  .Backspace, .CapsLock, .ShiftLeft {
+      width: 100px;
+  }
+  .Tab,.Delete  {
+    width: 48px;
+  }
+  .Enter, .ShiftRight {
+    width: 86px;
+  }
+  .Space {
+    width: 325px;
+  }
+  .Backspace, .CapsLock, .ShiftLeft,
+  .Tab,.Delete, .Enter, .ShiftRight,
+  .ControlLeft, .MetaLeft, .AltLeft,
+  .ControlRight, .MetaLeft, .AltRight  {
+    background-color: #222222;
+  }
+  .active {
+    background-color: orange;
+    border-radius: 50px;
+  }
+  .activeCaps {
+    background-color: orange;
+    border-radius: 50px;
+  }
+.active:hover {
+  background-color: orange;
+}
