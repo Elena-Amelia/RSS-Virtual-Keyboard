@@ -44,19 +44,74 @@ const keysShiftCaseDown = ['&#126;', '&#33;', '&#64;', '&#35;', '&#36;', '&#37;'
   'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', '&#60;', '&#62;', '&#63;', '&#8593;', 'Shift',
   'Ctrl', 'Win', 'Alt', '', 'Alt', '&#8592;', '&#8595;', '&#8594;', 'Ctrl'];
 const virtKeys = {
-   Backquote: ['`', '~'], Digit1: ['1', '!'], Digit2: ['2', '@'], Digit3: ['3', '#'], Digit4: ['4','$'], Digit5: ['5', '%'],Digit6: ['6', '^'], 
-   Digit7: ['7', '&'], Digit8: ['8', '*'], Digit9: ['9', '('], Digit0: ['0', ')'], Minus: ['-', '_'], Equal: ['=', '+'], Backspace: ['Backspace', ''],
-   Tab: ['Tab', ''], KeyQ: ['q', 'Q'], KeyW: ['w', 'W'], KeyE: ['e', 'E'], KeyR: ['r', 'R'], KeyT: ['t', 'T'] , KeyY: ['y', 'Y'],
-   KeyU: ['u', 'U'], KeyI: ['i', 'I'], KeyO: ['o', 'O'], KeyP: ['p', 'P'], BracketLeft: ['[', '{'], BracketRight: [']', '}'], Backslash: ['\\', '|'] , Delete: ['Delete', ''],
-   CapsLock: ['CapsLock', ''], KeyA: ['a', 'A'], KeyS: ['s', 'S'], KeyD: ['d', 'D',] /*KeyF: ['f', 'F']*/, KeyG: ['g', 'G'], KeyH: ['h', 'H'], KeyJ: ['j', 'J'],
-   KeyK: ['k', 'K'], KeyL: ['l', 'L'], Semicolon: [';', ':'] , Quote: ["'", '"'], Enter: ['\n', ''],
-  ShiftLeft: [' ShiftLeft', ''], KeyZ: ['z', 'Z'], KeyX: ['x', 'X'], KeyC: ['c', 'C'], KeyV: ['v', 'V'],
-  KeyB: ['b', 'B'], KeyN: ['n', 'N'], KeyM: ['m', 'M'], Comma: [',', '<'], Period: ['.', '>'], Slash: ['/', '?'], ArrowUp: ['ArrowUp', ''], ShiftRight: ['ShiftRight', ''],
-  ControlLeft: ['', ''], MetaLeft: ['', ''], AltLeft: ['', ''], Space: [' ', ' '], AltRight: ['', ''] , ArrowLeft: ['ArrowLeft', ''], ArrowDown: ['ArrowDown', ''], ArrowRight: ['ArrowRight', ''], ControlRight: ['ControlRight', ''],
-}
+  Backquote: ['`', '~'],
+  Digit1: ['1', '!'],
+  Digit2: ['2', '@'],
+  Digit3: ['3', '#'],
+  Digit4: ['4', '$'],
+  Digit5: ['5', '%'],
+  Digit6: ['6', '^'],
+  Digit7: ['7', '&'],
+  Digit8: ['8', '*'],
+  Digit9: ['9', '('],
+  Digit0: ['0', ')'],
+  Minus: ['-', '_'],
+  Equal: ['=', '+'],
+  Backspace: ['Backspace', ''],
+  Tab: ['Tab', ''],
+  KeyQ: ['q', 'Q'],
+  KeyW: ['w', 'W'],
+  KeyE: ['e', 'E'],
+  KeyR: ['r', 'R'],
+  KeyT: ['t', 'T'],
+  KeyY: ['y', 'Y'],
+  KeyU: ['u', 'U'],
+  KeyI: ['i', 'I'],
+  KeyO: ['o', 'O'],
+  KeyP: ['p', 'P'],
+  BracketLeft: ['[', '{'],
+  BracketRight: [']', '}'],
+  Backslash: ['\\', '|'],
+  Delete: ['Delete', ''],
+  CapsLock: ['CapsLock', ''],
+  KeyA: ['a', 'A'],
+  KeyS: ['s', 'S'],
+  KeyD: ['d', 'D'],
+  KeyF: ['f', 'F'],
+  KeyG: ['g', 'G'],
+  KeyH: ['h', 'H'],
+  KeyJ: ['j', 'J'],
+  KeyK: ['k', 'K'],
+  KeyL: ['l', 'L'],
+  Semicolon: [';', ':'],
+  Quote: ["'", '"'],
+  Enter: ['\n', ''],
+  ShiftLeft: [' ShiftLeft', ''],
+  KeyZ: ['z', 'Z'],
+  KeyX: ['x', 'X'],
+  KeyC: ['c', 'C'],
+  KeyV: ['v', 'V'],
+  KeyB: ['b', 'B'],
+  KeyN: ['n', 'N'],
+  KeyM: ['m', 'M'],
+  Comma: [',', '<'],
+  Period: ['.', '>'],
+  Slash: ['/', '?'],
+  ArrowUp: ['ArrowUp', ''],
+  ShiftRight: ['ShiftRight', ''],
+  ControlLeft: ['', ''],
+  MetaLeft: ['', ''],
+  AltLeft: ['', ''],
+  Space: [' ', ' '],
+  AltRight: ['', ''],
+  ArrowLeft: ['ArrowLeft', ''],
+  ArrowDown: ['ArrowDown', ''],
+  ArrowRight: ['ArrowRight', ''],
+  ControlRight: ['ControlRight', ''],
+};
 function createKeyboard() {
   let out = '';
-  for (let i = 0; i < keysCode.length; i++) {
+  for (let i = 0; i < keysCode.length; i += 1) {
     out += `<div class="key ${keysCode[i]}" data='${keysCode[i]}'><span class="eng"><span class="caseDown">${keysCaseDown[i]}</span>
     <span class="caseUp hidden">${keysShiftCaseUp[i]}</span><span class="caps hidden">${keysCaseUp[i]}</span>
     <span class="shiftCaps hidden">${keysShiftCaseDown[i]}</span></span><span class="rus hidden"></span></div>`;
@@ -75,7 +130,7 @@ const TEXTAREA = document.querySelector('textarea');
 let isCaps = false;
 
 /** **************ДЛЯ ФИЗ КЛАВЫ************** */
-document.onkeydown = function (event) {
+document.onkeydown = (event) => {
   KEY.forEach((item) => {
     if (item.classList.contains(event.code)) {
       item.classList.add('active');
@@ -89,17 +144,17 @@ document.onkeydown = function (event) {
         if (event.getModifierState('CapsLock') === true) {
           document.querySelector('.CapsLock').classList.add('activeCaps');
           isCaps = true;
-          caseDown.forEach((item) => { item.classList.add('hidden'); });
-          caseUp.forEach((item) => { item.classList.add('hidden'); });
-          shiftCaps.forEach((item) => { item.classList.add('hidden'); });
-          caps.forEach((item) => { item.classList.remove('hidden'); });
+          caseDown.forEach((item1) => { item1.classList.add('hidden'); });
+          caseUp.forEach((item1) => { item1.classList.add('hidden'); });
+          shiftCaps.forEach((item1) => { item1.classList.add('hidden'); });
+          caps.forEach((item1) => { item1.classList.remove('hidden'); });
         } else {
           document.querySelector('.CapsLock').classList.remove('activeCaps');
           isCaps = false;
-          caseDown.forEach((item) => { item.classList.remove('hidden'); });
-          caps.forEach((item) => { item.classList.add('hidden'); });
-          caseUp.forEach((item) => { item.classList.add('hidden'); });
-          shiftCaps.forEach((item) => { item.classList.add('hidden'); });
+          caseDown.forEach((item2) => { item2.classList.remove('hidden'); });
+          caps.forEach((item2) => { item2.classList.add('hidden'); });
+          caseUp.forEach((item2) => { item2.classList.add('hidden'); });
+          shiftCaps.forEach((item2) => { item2.classList.add('hidden'); });
         }
       }
 
@@ -107,26 +162,26 @@ document.onkeydown = function (event) {
         if (event.code === 'ShiftLeft') { document.querySelector('.ShiftLeft').classList.add('activeCaps'); } else if (event.code === 'ShiftRight') { document.querySelector('.ShiftRight').classList.add('activeCaps'); }
 
         if (event.getModifierState('Shift') === true && isCaps === false) {
-          caseDown.forEach((item) => { item.classList.add('hidden'); });
-          caps.forEach((item) => { item.classList.add('hidden'); });
-          shiftCaps.forEach((item) => { item.classList.add('hidden'); });
-          caseUp.forEach((item) => { item.classList.remove('hidden'); });
+          caseDown.forEach((item3) => { item3.classList.add('hidden'); });
+          caps.forEach((item3) => { item3.classList.add('hidden'); });
+          shiftCaps.forEach((item3) => { item3.classList.add('hidden'); });
+          caseUp.forEach((item3) => { item3.classList.remove('hidden'); });
         }
         if (event.getModifierState('Shift') === true && isCaps === true) {
-          caseDown.forEach((item) => { item.classList.add('hidden'); });
-          caseUp.forEach((item) => { item.classList.add('hidden'); });
-          caps.forEach((item) => { item.classList.add('hidden'); });
-          shiftCaps.forEach((item) => { item.classList.remove('hidden'); });
+          caseDown.forEach((item4) => { item4.classList.add('hidden'); });
+          caseUp.forEach((item4) => { item4.classList.add('hidden'); });
+          caps.forEach((item4) => { item4.classList.add('hidden'); });
+          shiftCaps.forEach((item4) => { item4.classList.remove('hidden'); });
         }
       }
     }
   });
 };
 
-document.onkeyup = function (event) { /** *************ПРИ ОТПУСКАНИИ КЛАВИШ */
-  KEY.forEach((item) => {
-    if (item.classList.contains('active')) {
-      item.classList.remove('active');
+document.onkeyup = (event) => { /** *************ПРИ ОТПУСКАНИИ КЛАВИШ */
+  KEY.forEach((item5) => {
+    if (item5.classList.contains('active')) {
+      item5.classList.remove('active');
     }
 
     if (event.key === 'Shift') {
@@ -135,17 +190,17 @@ document.onkeyup = function (event) { /** *************ПРИ ОТПУСКАНИ
       } else if (event.code === 'ShiftRight') { document.querySelector('.ShiftRight').classList.remove('activeCaps'); }
 
       if (event.key === 'Shift' && isCaps === false) {
-        caseDown.forEach((item) => { item.classList.remove('hidden'); });
-        caseUp.forEach((item) => { item.classList.add('hidden'); });
-        caps.forEach((item) => { item.classList.add('hidden'); });
-        shiftCaps.forEach((item) => { item.classList.add('hidden'); });
+        caseDown.forEach((item6) => { item6.classList.remove('hidden'); });
+        caseUp.forEach((item6) => { item6.classList.add('hidden'); });
+        caps.forEach((item6) => { item6.classList.add('hidden'); });
+        shiftCaps.forEach((item6) => { item6.classList.add('hidden'); });
       }
 
       if (event.key === 'Shift' && isCaps === true) {
-        caseDown.forEach((item) => { item.classList.add('hidden'); });
-        caseUp.forEach((item) => { item.classList.add('hidden'); });
-        shiftCaps.forEach((item) => { item.classList.add('hidden'); });
-        caps.forEach((item) => { item.classList.remove('hidden'); });
+        caseDown.forEach((item7) => { item7.classList.add('hidden'); });
+        caseUp.forEach((item7) => { item7.classList.add('hidden'); });
+        shiftCaps.forEach((item7) => { item7.classList.add('hidden'); });
+        caps.forEach((item7) => { item7.classList.remove('hidden'); });
       }
     }
   });
@@ -153,21 +208,19 @@ document.onkeyup = function (event) { /** *************ПРИ ОТПУСКАНИ
 /** **************ДЛЯ ФИЗ КЛАВЫ************** */
 /** **************ДЛЯ ВИРТ КЛАВЫ************** */
 
-KEY.forEach((item) => {
-  item.addEventListener('mousedown', (event) => {
-    item.classList.remove('active');
-    item.classList.add('active');
-    let data = item.getAttribute('data');
-    let text = virtKeys[data][0];
+KEY.forEach((item8) => {
+  item8.addEventListener('mousedown', () => {
+    item8.classList.remove('active');
+    item8.classList.add('active');
+    const data = item8.getAttribute('data');
+    const text = virtKeys[data][0];
     TEXTAREA.value += text;
     TEXTAREA.focus();
   });
-  
 });
- KEY.forEach((item) => {
-  item.addEventListener('mouseup', (event) => {
-    item.classList.remove('active');
+KEY.forEach((item9) => {
+  item9.addEventListener('mouseup', () => {
+    item9.classList.remove('active');
     TEXTAREA.focus();
   });
 });
-
