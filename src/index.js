@@ -72,7 +72,7 @@ const virtKeys = {
   BracketLeft: ['[', '{', '[', '{'],
   BracketRight: [']', '}', ']', '}'],
   Backslash: ['\\', '|', '\\', '|'],
-  Delete: ['', '', '', ''],
+  // Delete: ['', '', '', ''],
   CapsLock: ['', '', '', ''],
   KeyA: ['a', 'A', 'A', 'a'],
   KeyS: ['s', 'S', 'S', 's'],
@@ -97,16 +97,16 @@ const virtKeys = {
   Comma: [',', '<', ',', '<'],
   Period: ['.', '>', '.', '>'],
   Slash: ['/', '?', '/', '?'],
-  ArrowUp: ['', '', '', ''],
+  ArrowUp: ['▲', '▲', '▲', '▲'],
   ShiftRight: ['', '', '', ''],
   ControlLeft: ['', '', '', ''],
   MetaLeft: ['', '', '', ''],
   AltLeft: ['', '', '', ''],
   Space: [' ', ' ', ' ', ' '],
   AltRight: ['', '', '', ''],
-  ArrowLeft: ['', '', '', ''],
-  ArrowDown: ['', '', '', ''],
-  ArrowRight: ['', '', '', ''],
+  ArrowLeft: ['◄', '◄', '◄', '◄'],
+  ArrowDown: ['▼', '▼', '▼', '▼'],
+  ArrowRight: ['►', '►', '►', '►'],
   ControlRight: ['', '', '', ''],
 };
 function createKeyboard() {
@@ -211,6 +211,8 @@ document.onkeyup = (event) => { /** *************ПРИ ОТПУСКАНИИ К�
 const CAPS = document.querySelector('.CapsLock');
 const SHIFTLEFT = document.querySelector('.ShiftLeft');
 const SHIFTRIGHT = document.querySelector('.ShiftRight');
+// const DELETE = document.querySelector('.Delete');
+// const BACKSPACE = document.querySelector('.Backspace');
 let hasCaps = false;
 let hasShift = false;
 
@@ -236,7 +238,7 @@ CAPS.addEventListener('click', () => {
     shiftCaps.forEach((item2) => { item2.classList.add('hidden'); });
   } else if (!CAPS.classList.contains('activeCaps') && hasShift === true) {
     hasCaps = false;
-    caseDown.forEach((item2) => { item2.classList.remove('hidden'); });
+    caseDown.forEach((item2) => { item2.classList.add('hidden'); });
     caps.forEach((item2) => { item2.classList.add('hidden'); });
     caseUp.forEach((item2) => { item2.classList.remove('hidden'); });
     shiftCaps.forEach((item2) => { item2.classList.add('hidden'); });
@@ -283,7 +285,7 @@ SHIFTRIGHT.addEventListener('mousedown', () => {
     caps.forEach((item3) => { item3.classList.add('hidden'); });
     shiftCaps.forEach((item3) => { item3.classList.add('hidden'); });
     caseUp.forEach((item3) => { item3.classList.remove('hidden'); });
-  } else if (SHIFTLEFT.classList.contains('activeCaps') && hasCaps === true) {
+  } else if (SHIFTRIGHT.classList.contains('activeCaps') && hasCaps === true) {
     caseDown.forEach((item4) => { item4.classList.add('hidden'); });
     caseUp.forEach((item4) => { item4.classList.add('hidden'); });
     caps.forEach((item4) => { item4.classList.add('hidden'); });
@@ -309,27 +311,21 @@ SHIFTRIGHT.addEventListener('mouseup', () => {
 
 KEY.forEach((item8) => {
   item8.addEventListener('mousedown', () => {
+    item8.classList.add('active');
+    const data = item8.getAttribute('data');
     if (hasCaps === false && hasShift === false) {
-      item8.classList.add('active');
-      const data = item8.getAttribute('data');
       const text = virtKeys[data][0];
       TEXTAREA.value += text;
       TEXTAREA.focus();
     } else if (hasCaps === false && hasShift === true) {
-      item8.classList.add('active');
-      const data = item8.getAttribute('data');
       const text = virtKeys[data][1];
       TEXTAREA.value += text;
       TEXTAREA.focus();
     } else if (hasCaps === true && hasShift === false) {
-      item8.classList.add('active');
-      const data = item8.getAttribute('data');
       const text = virtKeys[data][2];
       TEXTAREA.value += text;
       TEXTAREA.focus();
     } else if (hasCaps === true && hasShift === true) {
-      item8.classList.add('active');
-      const data = item8.getAttribute('data');
       const text = virtKeys[data][3];
       TEXTAREA.value += text;
       TEXTAREA.focus();
@@ -343,3 +339,8 @@ KEY.forEach((item9) => {
     TEXTAREA.focus();
   });
 });
+
+// if (item8.classList.contains('.Delete')) {
+//   TEXTAREA.value -= 1;
+//   TEXTAREA.focus();
+// }
