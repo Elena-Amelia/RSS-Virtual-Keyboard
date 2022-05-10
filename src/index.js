@@ -107,7 +107,7 @@ const virtKeys = {
   ArrowLeft: ['', ''],
   ArrowDown: ['', ''],
   ArrowRight: ['', ''],
-  ControlRight: ['', ''],
+  ControlRight: ['', '']
 };
 function createKeyboard() {
   let out = '';
