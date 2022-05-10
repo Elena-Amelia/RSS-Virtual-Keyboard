@@ -216,43 +216,39 @@ CAPS.addEventListener('click', () => {
   if (CAPS.classList.contains('activeCaps')) {
     hasCaps = true;
     caseDown.forEach((item1) => { item1.classList.add('hidden'); });
-          caseUp.forEach((item1) => { item1.classList.add('hidden'); });
-          shiftCaps.forEach((item1) => { item1.classList.add('hidden'); });
-          caps.forEach((item1) => { item1.classList.remove('hidden'); });
+    caseUp.forEach((item1) => { item1.classList.add('hidden'); });
+    shiftCaps.forEach((item1) => { item1.classList.add('hidden'); });
+    caps.forEach((item1) => { item1.classList.remove('hidden'); });
   } else {
     hasCaps = false;
     caseDown.forEach((item2) => { item2.classList.remove('hidden'); });
-          caps.forEach((item2) => { item2.classList.add('hidden'); });
-          caseUp.forEach((item2) => { item2.classList.add('hidden'); });
-          shiftCaps.forEach((item2) => { item2.classList.add('hidden'); });
+    caps.forEach((item2) => { item2.classList.add('hidden'); });
+    caseUp.forEach((item2) => { item2.classList.add('hidden'); });
+    shiftCaps.forEach((item2) => { item2.classList.add('hidden'); });
   }
 });
-
-
 
 KEY.forEach((item8) => {
   item8.addEventListener('mousedown', () => {
     if (hasCaps === false) {
-    item8.classList.add('active');
-    const data = item8.getAttribute('data');
-    const text = virtKeys[data][0];
-    TEXTAREA.value += text;
-    TEXTAREA.focus();
-    }
-    else {
-          item8.classList.add('active');
-          const data = item8.getAttribute('data');
-          const text = virtKeys[data][1];
-          TEXTAREA.value += text;
-          TEXTAREA.focus();
+      item8.classList.add('active');
+      const data = item8.getAttribute('data');
+      const text = virtKeys[data][0];
+      TEXTAREA.value += text;
+      TEXTAREA.focus();
+    } else {
+      item8.classList.add('active');
+      const data = item8.getAttribute('data');
+      const text = virtKeys[data][1];
+      TEXTAREA.value += text;
+      TEXTAREA.focus();
     }
   });
 });
-
 
 KEY.forEach((item9) => {
   item9.addEventListener('mouseup', () => {
     item9.classList.remove('active');
     TEXTAREA.focus();
-  }); 
+  });
 });
