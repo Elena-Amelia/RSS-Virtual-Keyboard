@@ -67,7 +67,7 @@
   }
 
   .key:hover {
-    background-color: rgba( 255, 165, 0, 0.5);
+    background-color: rgba( 255, 165, 0, 0.4);
     }
    
 
@@ -94,11 +94,9 @@
   }
   .active {
     background-color: orange;
-    border-radius: 50px;
   }
   .activeCaps {
     background-color: orange;
-    border-radius: 50px;
   }
 .active:hover {
   background-color: orange;
