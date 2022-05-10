@@ -208,16 +208,44 @@ document.onkeyup = (event) => { /** *************ПРИ ОТПУСКАНИИ К�
 /** **************ДЛЯ ФИЗ КЛАВЫ************** */
 /** **************ДЛЯ ВИРТ КЛАВЫ************** */
 
+const CAPS = document.querySelector('.CapsLock');
+let hasCaps = false;
+
+CAPS.addEventListener('click', () => {
+  CAPS.classList.toggle('activeCaps');
+  if (CAPS.classList.contains('activeCaps')) {
+    hasCaps = true;
+    caseDown.forEach((item1) => { item1.classList.add('hidden'); });
+    caseUp.forEach((item1) => { item1.classList.add('hidden'); });
+    shiftCaps.forEach((item1) => { item1.classList.add('hidden'); });
+    caps.forEach((item1) => { item1.classList.remove('hidden'); });
+  } else {
+    hasCaps = false;
+    caseDown.forEach((item2) => { item2.classList.remove('hidden'); });
+    caps.forEach((item2) => { item2.classList.add('hidden'); });
+    caseUp.forEach((item2) => { item2.classList.add('hidden'); });
+    shiftCaps.forEach((item2) => { item2.classList.add('hidden'); });
+  }
+});
+
 KEY.forEach((item8) => {
   item8.addEventListener('mousedown', () => {
-    item8.classList.remove('active');
-    item8.classList.add('active');
-    const data = item8.getAttribute('data');
-    const text = virtKeys[data][0];
-    TEXTAREA.value += text;
-    TEXTAREA.focus();
+    if (hasCaps === false) {
+      item8.classList.add('active');
+      const data = item8.getAttribute('data');
+      const text = virtKeys[data][0];
+      TEXTAREA.value += text;
+      TEXTAREA.focus();
+    } else {
+      item8.classList.add('active');
+      const data = item8.getAttribute('data');
+      const text = virtKeys[data][1];
+      TEXTAREA.value += text;
+      TEXTAREA.focus();
+    }
   });
 });
+
 KEY.forEach((item9) => {
   item9.addEventListener('mouseup', () => {
     item9.classList.remove('active');
